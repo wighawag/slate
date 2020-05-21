@@ -61,6 +61,12 @@ vagrant up
 # OR run this to run with docker
 docker build . -t slate:latest # this only needs to be run once
 docker run -p 4567:4567 -v $(pwd)/source:/srv/slate/source slate:latest
+
+# Or to generate the static output in the build folder:
+docker run -p 4567:4567 -v $(pwd)/source:/srv/slate/source -v $(pwd)/build:/srv/slate/build slate:latest bundle exec middleman build --clean
+
+#on windows
+docker run -p 4567:4567 -v %cd%/source:/srv/slate/source -v %cd%/build:/srv/slate/build slate:latest bundle exec middleman build --clean
 ```
 
 You can now see the docs at http://localhost:4567. Whoa! That was fast!
